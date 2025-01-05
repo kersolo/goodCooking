@@ -1,15 +1,15 @@
-import { Button } from "@material-tailwind/react";
 import "./App.css";
+import { StickyNavbar } from "./components/StickyNavbar";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/home/HomePage";
 
 function App() {
   return (
     <>
-      <div>
-        <h1>Hello world!</h1>
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
-        <button>Button</button>
-        <Button>Button</Button>
-      </div>
+      <StickyNavbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
     </>
   );
 }
