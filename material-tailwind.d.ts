@@ -14,6 +14,12 @@ declare module "@material-tailwind/react" {
   export interface IconButtonProps extends EventCapture {
     placeholder?: unknown;
   }
+  export interface ListProps extends EventCapture {
+    placeholder?: unknown;
+  }
+  export interface ListItemProps extends EventCapture {
+    placeholder?: unknown;
+  }
   export interface InputProps extends EventCapture {
     crossOrigin?: unknown;
   }

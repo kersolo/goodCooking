@@ -5,11 +5,16 @@ import {
   Button,
   IconButton,
   Collapse,
+  List,
 } from "@material-tailwind/react";
-import searchIcon from "../assets/search-icon.svg";
+import searchIcon from "../../assets/search-icon.svg";
+import { Link } from "react-router-dom";
+import NavBarItem from "./NavBarItem";
+import { useMediaQuery } from "../../services/hooks/useMediaQuery";
 
 export function StickyNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
+  const isMobile = useMediaQuery("(max-width: 719px)");
 
   React.useEffect(() => {
     window.addEventListener(
@@ -19,48 +24,28 @@ export function StickyNavbar() {
   }, []);
 
   const navList = (
-    <ul className="mt-2 mb-4 flex flex-col gap-6 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="pl-4 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Pages
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="pl-4 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Account
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="pl-4 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Blocks
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="pl-4 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Docs
-        </a>
-      </Typography>
-    </ul>
+    <List className="mt-2 mb-4 flex flex-col gap-6 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+      <NavBarItem
+        onclick={() => setOpenNav(isMobile && !openNav)}
+        pathName="/Breakfast"
+        name="Petit Déjeuner"
+      />
+      <NavBarItem
+        onclick={() => setOpenNav(isMobile && !openNav)}
+        pathName="/Lunch"
+        name="Déjeuner"
+      />
+      <NavBarItem
+        onclick={() => setOpenNav(isMobile && !openNav)}
+        pathName="/Dinner"
+        name="Diner"
+      />
+      <NavBarItem
+        onclick={() => setOpenNav(isMobile && !openNav)}
+        pathName="/Aperitif"
+        name="Apero"
+      />
+    </List>
   );
 
   return (
@@ -122,13 +107,14 @@ export function StickyNavbar() {
             )}
           </IconButton>
         </div>
-        <Typography
-          as="a"
-          href="#"
-          className="mr-4 cursor-pointer py-1.5 font-medium"
+        <Link
+          onClick={() => openNav && setOpenNav(isMobile && !openNav)}
+          to={"/"}
         >
-          GoodCooking
-        </Typography>
+          <Typography className="mr-4 cursor-pointer py-1.5 font-medium">
+            GoodCooking
+          </Typography>
+        </Link>
         <img className="lg:hidden" src={searchIcon} alt="search-icon" />
       </div>
       <Collapse open={openNav}>
